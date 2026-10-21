@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="zh-Hant">
-<head>
+<html lang="zh-Hant"><head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="用水位、繩長與高度，即時計算左右對稱的水平距離 −x 與 +x。">
@@ -57,6 +56,8 @@
     input[type="number"] { width: 76px; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--ink); font: inherit; font-weight: 800; text-align: right; padding: 2px; }
     input[type="range"] { width: 100%; accent-color: var(--coral); cursor: pointer; }
     .ticks { display: flex; justify-content: space-between; color: var(--muted); font-size: .72rem; }
+    output { color: var(--ink); font-weight: 800; font-variant-numeric: tabular-nums; }
+    .linked-note { margin-top: 8px; color: var(--blue); font-size: .78rem; font-weight: 750; }
     .quick { display: flex; gap: 8px; margin-top: -5px; margin-bottom: 22px; }
     button { padding: 8px 12px; cursor: pointer; font-size: .78rem; font-weight: 750; transition: .18s ease; }
     button:hover, button:focus-visible { border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
@@ -90,7 +91,7 @@
     <header>
       <div>
         <p class="eyebrow">動態幾何 · 對稱範圍</p>
-        <h1>水位改變時，<br>人到中心的距離？</h1>
+        <h1>水位改變時，<br>人能走到哪裡？</h1>
       </div>
       <p class="intro">拖曳水位滑桿，即時計算人物相對原點 O 的左右極限位置。圖形、繩長與座標會同步更新。</p>
     </header>
@@ -106,36 +107,36 @@
           <svg id="diagram" viewBox="0 0 720 480" role="img" aria-label="固定點、人物、水位與水平距離的動態示意圖">
             <defs>
               <linearGradient id="waterFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#71d4dc" stop-opacity=".62"/>
-                <stop offset="1" stop-color="#c9eef1" stop-opacity=".42"/>
+                <stop offset="0" stop-color="#71d4dc" stop-opacity=".62"></stop>
+                <stop offset="1" stop-color="#c9eef1" stop-opacity=".42"></stop>
               </linearGradient>
-              <filter id="softShadow"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#102a43" flood-opacity=".12"/></filter>
+              <filter id="softShadow"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#102a43" flood-opacity=".12"></feDropShadow></filter>
             </defs>
-            <rect id="water" x="70" y="420" width="590" height="0" fill="url(#waterFill)"/>
-            <path id="wave" d="M70 420 H660" fill="none" stroke="#39aeba" stroke-width="3"/>
-            <line x1="70" y1="420" x2="660" y2="420" stroke="#102a43" stroke-width="4" stroke-linecap="round"/>
-            <line id="pole" x1="360" y1="420" x2="360" y2="75" stroke="#126e82" stroke-width="8" stroke-linecap="round"/>
-            <line id="rope" x1="360" y1="75" x2="570" y2="299" stroke="#f26b4f" stroke-width="5" stroke-linecap="round" filter="url(#softShadow)"/>
-            <line id="distance" x1="360" y1="444" x2="570" y2="444" stroke="#126e82" stroke-width="2" stroke-dasharray="7 7"/>
-            <line id="tickO" x1="360" y1="434" x2="360" y2="454" stroke="#126e82" stroke-width="3"/>
-            <line id="tickC" x1="570" y1="434" x2="570" y2="454" stroke="#126e82" stroke-width="3"/>
-            <g id="person" transform="translate(570 299)">
-              <circle cx="0" cy="0" r="16" fill="#fff" stroke="#102a43" stroke-width="5"/>
-              <line x1="0" y1="16" x2="0" y2="73" stroke="#102a43" stroke-width="7" stroke-linecap="round"/>
-              <line x1="0" y1="37" x2="-22" y2="58" stroke="#102a43" stroke-width="6" stroke-linecap="round"/>
-              <line x1="0" y1="37" x2="23" y2="56" stroke="#102a43" stroke-width="6" stroke-linecap="round"/>
-              <line x1="0" y1="73" x2="-20" y2="116" stroke="#102a43" stroke-width="7" stroke-linecap="round"/>
-              <line x1="0" y1="73" x2="21" y2="116" stroke="#102a43" stroke-width="7" stroke-linecap="round"/>
+            <rect id="water" x="70" y="351" width="590" height="69" fill="url(#waterFill)"></rect>
+            <path id="wave" d="M70 351 q15 -5 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0" fill="none" stroke="#39aeba" stroke-width="3"></path>
+            <line x1="70" y1="420" x2="660" y2="420" stroke="#102a43" stroke-width="4" stroke-linecap="round"></line>
+            <line id="pole" x1="360" y1="420" x2="360" y2="75" stroke="#126e82" stroke-width="8" stroke-linecap="round"></line>
+            <line id="rope" x1="360" y1="75" x2="522.6295687240688" y2="299.25" stroke="#f26b4f" stroke-width="5" stroke-linecap="round" filter="url(#softShadow)"></line>
+            <line id="distance" x1="360" y1="444" x2="522.6295687240688" y2="444" stroke="#126e82" stroke-width="2" stroke-dasharray="7 7"></line>
+            <line id="tickO" x1="360" y1="434" x2="360" y2="454" stroke="#126e82" stroke-width="3"></line>
+            <line id="tickC" x1="522.6295687240688" y1="434" x2="522.6295687240688" y2="454" stroke="#126e82" stroke-width="3"></line>
+            <g id="person" transform="translate(522.6295687240688 299.25) scale(1)">
+              <circle cx="0" cy="0" r="16" fill="#fff" stroke="#102a43" stroke-width="5"></circle>
+              <line x1="0" y1="16" x2="0" y2="73" stroke="#102a43" stroke-width="7" stroke-linecap="round"></line>
+              <line x1="0" y1="37" x2="-22" y2="58" stroke="#102a43" stroke-width="6" stroke-linecap="round"></line>
+              <line x1="0" y1="37" x2="23" y2="56" stroke="#102a43" stroke-width="6" stroke-linecap="round"></line>
+              <line x1="0" y1="73" x2="-20" y2="116" stroke="#102a43" stroke-width="7" stroke-linecap="round"></line>
+              <line x1="0" y1="73" x2="21" y2="116" stroke="#102a43" stroke-width="7" stroke-linecap="round"></line>
             </g>
-            <circle cx="360" cy="75" r="10" fill="#102a43"/>
-            <circle cx="360" cy="420" r="9" fill="#102a43"/>
+            <circle cx="360" cy="75" r="10" fill="#102a43"></circle>
+            <circle cx="360" cy="420" r="9" fill="#102a43"></circle>
             <text x="345" y="54" fill="#102a43" font-size="22" font-weight="800">A</text>
-            <text id="labelB" x="592" y="292" fill="#102a43" font-size="22" font-weight="800">B</text>
+            <text id="labelB" x="544.6295687240688" y="291.25" fill="#102a43" font-size="22" font-weight="800">B</text>
             <text x="338" y="466" fill="#102a43" font-size="22" font-weight="800">O</text>
-            <text id="labelC" x="585" y="466" fill="#102a43" font-size="22" font-weight="800">C</text>
-            <text id="ropeLabel" x="470" y="166" fill="#b6422d" font-size="18" font-weight="800">有效繩長 4.00 m</text>
-            <text id="waterLabel" x="84" y="395" fill="#0b6975" font-size="18" font-weight="800">水位 1.00 m</text>
-            <text id="distanceLabel" x="435" y="469" fill="#126e82" font-size="18" font-weight="800">x = 2.33 m</text>
+            <text id="labelC" x="534.6295687240688" y="466" fill="#102a43" font-size="22" font-weight="800">C</text>
+            <text id="ropeLabel" x="433.3147843620344" y="175.125" fill="#b6422d" font-size="18" font-weight="800">有效繩長 4.00 m</text>
+            <text id="waterLabel" x="84" y="339" fill="#0b6975" font-size="18" font-weight="800">水位 1.00 m</text>
+            <text id="distanceLabel" x="405.3147843620344" y="469" fill="#126e82" font-size="18" font-weight="800">x = 2.33 m</text>
           </svg>
         </div>
         <div class="results" aria-live="polite">
@@ -149,7 +150,7 @@
         <p>所有數值皆以公尺計。水位上升會減少可用繩長。</p>
 
         <div class="field">
-          <div class="label-row"><label for="waterRange">水位</label><span class="number-wrap"><input id="waterNumber" type="number" min="0" step="0.01" value="1"><span>m</span></span></div>
+          <div class="label-row"><label for="waterRange">水位</label><span class="number-wrap"><input id="waterNumber" type="number" min="0" step="0.01" value="1" max="1.75"><span>m</span></span></div>
           <input id="waterRange" type="range" min="0" max="1.75" step="0.01" value="1">
           <div class="ticks"><span>0 m</span><span id="waterMaxLabel">最大 1.75 m</span></div>
         </div>
@@ -163,22 +164,22 @@
           <div class="label-row"><label for="personHeight">人物高度 h</label><span class="number-wrap"><input id="personHeight" type="number" min="0.5" max="3" step="0.01" value="1.75"><span>m</span></span></div>
         </div>
         <div class="field">
-          <div class="label-row"><label for="anchorHeight">固定點高度 H</label><span class="number-wrap"><input id="anchorHeight" type="number" min="1" max="20" step="0.01" value="5"><span>m</span></span></div>
-        </div>
-        <div class="field">
-          <div class="label-row"><label for="ropeLength">初始繩長 L</label><span class="number-wrap"><input id="ropeLength" type="number" min="0.5" max="20" step="0.01" value="5"><span>m</span></span></div>
+          <div class="label-row"><label for="anchorHeight">固定點高度 H</label><output id="anchorValue" for="anchorHeight">5.00 m</output></div>
+          <input id="anchorHeight" type="range" min="2" max="10" step="0.05" value="5">
+          <div class="ticks"><span>2 m</span><span>10 m</span></div>
+          <div class="linked-note">初始繩長 L 自動等於 H：<span id="ropeValue">5.00 m</span></div>
         </div>
 
         <div class="formula">
           <div class="title">計算公式</div>
-          <div class="equation">x = √[(L − 水位)² − (H − h)²]</div>
+          <div class="equation">L = H　｜　x = √[(H − 水位)² − (H − h)²]</div>
           <p id="substitution">= √[(5.00 − 1.00)² − (5.00 − 1.75)²] = 2.33 m</p>
           <div class="notice" id="notice"></div>
         </div>
       </aside>
     </section>
     <footer>
-      <span>假設：人物站在地面，繩子由 A 連到頭頂 B；水位每上升 1 m，可用繩長減少 1 m。</span>
+      <span>假設：人物站在地面，繩子由 A 連到頭頂 B；初始繩長 L 等於固定點高度 H。</span>
       <span>範例驗證：水位 0 m → ±3.80 m；水位 1 m → ±2.33 m。</span>
     </footer>
   </main>
@@ -187,7 +188,7 @@
     const $ = (id) => document.getElementById(id);
     const fields = {
       water: $('waterNumber'), range: $('waterRange'), person: $('personHeight'),
-      anchor: $('anchorHeight'), rope: $('ropeLength')
+      anchor: $('anchorHeight')
     };
     const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
     const n = (el, fallback) => Number.isFinite(el.valueAsNumber) ? el.valueAsNumber : fallback;
@@ -195,7 +196,9 @@
     function update() {
       const H = n(fields.anchor, 5);
       const h = n(fields.person, 1.75);
-      const L = n(fields.rope, 5);
+      const L = H;
+      $('anchorValue').textContent = `${H.toFixed(2)} m`;
+      $('ropeValue').textContent = `${L.toFixed(2)} m`;
       const vertical = Math.abs(H - h);
       const maxWater = Math.max(0, L - vertical);
       fields.range.max = maxWater.toFixed(2);
@@ -226,7 +229,7 @@
       const scaleY = 345 / Math.max(H, 1);
       const headY = groundY - h * scaleY;
       const usableWidth = 265;
-      const maxXAtZero = Math.sqrt(Math.max(0, (n(fields.rope, 5) ** 2) - (H - h) ** 2));
+      const maxXAtZero = Math.sqrt(Math.max(0, (H ** 2) - (H - h) ** 2));
       const xScale = maxXAtZero > 0 ? usableWidth / maxXAtZero : 0;
       const personX = centerX + x * xScale;
       const waterY = groundY - w * scaleY;
@@ -255,12 +258,13 @@
 
     fields.range.addEventListener('input', () => { fields.water.value = fields.range.value; update(); });
     fields.water.addEventListener('input', update);
-    [fields.person, fields.anchor, fields.rope].forEach((field) => field.addEventListener('input', update));
+    [fields.person, fields.anchor].forEach((field) => field.addEventListener('input', update));
     document.querySelectorAll('[data-water]').forEach((button) => button.addEventListener('click', () => {
       fields.water.value = button.dataset.water; update();
     }));
     $('maxWater').addEventListener('click', () => { fields.water.value = fields.range.max; update(); });
     update();
   </script>
-</body>
-</html>
+
+
+</body></html>
